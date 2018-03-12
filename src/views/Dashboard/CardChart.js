@@ -10,28 +10,61 @@ import {
   CardFooter,
   CardTitle
 } from 'reactstrap';
-import {
-  brandPrimary,
-  brandSuccess,
-  brandInfo,
-  brandWarning,
-  brandDanger
-} from '../../colors';
+
+const chartOptions = {
+  type: 'line',
+  maintainAspectRatio: false,
+  legend: {
+    display: false
+  },
+  scales: {
+    xAxes: [
+      {
+        display: false,
+        type: 'time',
+        distribution: 'linear',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            hour: 'MMM D hA'
+          }
+        }
+      }
+    ],
+    yAxes: [
+      {
+        display: false
+      }
+    ]
+  },
+  elements: {
+    line: {
+      borderWidth: 2,
+      tension: 0.3
+    },
+    point: {
+      radius: 0,
+      hitRadius: 10,
+      hoverRadius: 4
+    }
+  }
+};
 
 export default class CardChart extends Component {
+  renderChart() {
+    if (!this.props.data) return null;
+
+    return <Line data={this.props.data} options={chartOptions} height={70} />;
+  }
   render() {
     return (
-      <Card className="text-white bg-warning">
+      <Card className="text-white bg-card-chart">
         <CardBody className="pb-0">
           <h4 className="mb-0">{this.props.title}</h4>
           <p>{this.props.subtitle}</p>
         </CardBody>
         <div className="chart-wrapper px-0" style={{ height: '70px' }}>
-          <Line
-            data={this.props.data}
-            options={this.props.options}
-            height={70}
-          />
+          {this.renderChart()}
         </div>
       </Card>
     );

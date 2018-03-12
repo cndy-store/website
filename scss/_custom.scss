@@ -1,1 +1,11 @@
 // Here you can add other styles
+
+$pinkLight : #FFB3B3;
+$pinkChartBg : rgba(255,179,179, 0.5);
+$pink : #FF7888;
+$greenLight : #21A68D;
+$green : #169185;
+
+.card.bg-card-chart {
+  background: $pink;
+}
