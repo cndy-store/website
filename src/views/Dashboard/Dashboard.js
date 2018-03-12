@@ -104,7 +104,7 @@ class Dashboard extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col sm="12" lg="4">
+          <Col md="12" lg="4">
             <CardChart
               title={'Issued'}
               subtitle={'Total amount of CNDY issued'}
@@ -112,7 +112,7 @@ class Dashboard extends Component {
             />
           </Col>
 
-          <Col sm="12" lg="4">
+          <Col md="12" lg="4">
             <CardChart
               title={'Accounts'}
               subtitle={'Accounts making transactions'}
@@ -120,7 +120,7 @@ class Dashboard extends Component {
             />
           </Col>
 
-          <Col sm="12" lg="4">
+          <Col md="12" lg="4">
             <CardChart
               title={'Effects'}
               subtitle={'Number of Effects generated'}
