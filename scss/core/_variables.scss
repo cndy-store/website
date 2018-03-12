@@ -46,10 +46,10 @@ $navbar-border: (
     color:                            $border-color
   )
 )  !default;
-$navbar-brand-width:                  155px !default;
+$navbar-brand-width:                  210px !default;
 $navbar-brand-bg:                     #fff !default;
-$navbar-brand-logo:                   url('../img/logo.png') !default;
-$navbar-brand-logo-size:              70px auto !default;
+$navbar-brand-logo:                   url('../img/logo-horizontal.svg') !default;
+$navbar-brand-logo-size:              150px auto !default;
 $navbar-brand-border: (
   bottom: (
     size:                             1px,
@@ -58,10 +58,10 @@ $navbar-brand-border: (
   )
 ) !default;
 
-$navbar-brand-minimized-width:        50px !default;
+$navbar-brand-minimized-width:        120px !default;
 $navbar-brand-minimized-bg:           $navbar-brand-bg !default;
-$navbar-brand-minimized-logo:         url('../img/logo-symbol.png') !default;
-$navbar-brand-minimized-logo-size:    24px !default;
+$navbar-brand-minimized-logo:         url('../img/logo-symbol.svg') !default;
+$navbar-brand-minimized-logo-size:    100px !default;
 $navbar-brand-minimized-border:       $navbar-brand-border !default;
 
 $navbar-color:                        $gray-600 !default;

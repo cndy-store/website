@@ -14,7 +14,7 @@ class Full extends Component {
       <div className="app">
         <Header />
         <div className="app-body">
-          <main className="main">
+          <main className="main mt-4">
             <Container fluid>
               <Dashboard/>
             </Container>

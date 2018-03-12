@@ -1,11 +1,7 @@
 {
-  "name": "@coreui/react",
+  "name": "cndy-site",
   "version": "1.0.10",
-  "description": "Open Source Bootstrap Admin Template",
-  "author": "Łukasz Holeczek",
-  "homepage": "http://coreui.io",
-  "copyright": "Copyright 2018 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
+  "description": "Static page for cndy",
   "private": true,
   "devDependencies": {
     "babel-core": "6.26.0",
