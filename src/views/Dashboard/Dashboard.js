@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import {
+  Alert,
   Badge,
   Row,
   Col,
@@ -26,10 +27,7 @@ import { extractLastEntryPerDay } from '../../lib/data_helpers';
 
 import MainChart from './MainChart';
 import CardChart from './CardChart';
-
-import historyData from '../../fixtures/history';
-import effectsData from '../../fixtures/effects';
-import statsData from '../../fixtures/stats';
+import { loadStats, loadHistory, loadEffects } from '../../lib/api';
 
 const dataSetDefaults = {
   backgroundColor: 'rgba(255,255,255,.2)',
@@ -82,6 +80,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loadErrors: [],
       historyData: null,
       statsData: null,
       effectsData: null
@@ -93,16 +92,46 @@ class Dashboard extends Component {
   }
 
   loadData() {
+    loadHistory()
+      .then(response => this.setState({ historyData: response.history }))
+      .catch(e => this.addLoadError('Error loading asset history', e));
+
+    loadEffects()
+      .then(response => this.setState({ effectsData: response.effects }))
+      .catch(e => this.addLoadError('Error loading effects', e));
+
+    loadStats()
+      .then(response => this.setState({ statsData: response }))
+      .catch(e => this.addLoadError('Error loading asset stats.', e));
+  }
+
+  addLoadError(message, e) {
     this.setState({
-      historyData: historyData.history,
-      statsData,
-      effectsData: effectsData.effects
+      loadErrors: [message, ...this.state.loadErrors]
     });
+
+    console.error(e);
+  }
+
+  renderLoadError() {
+    if (!this.state.loadErrors.length) return null;
+
+    const errors = this.state.loadErrors.map(msg => {
+      return <p>{msg}</p>;
+    });
+
+    return (
+      <Alert color="danger">
+        <h4 className="alert-heading">Dashboard could not be loaded!</h4>
+        {errors}
+      </Alert>
+    );
   }
 
   render() {
     return (
       <div className="animated fadeIn">
+        {this.renderLoadError()}
         <Row>
           <Col md="12" lg="4">
             <CardChart
