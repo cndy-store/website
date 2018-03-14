@@ -137,24 +137,24 @@ export default class MainChart extends Component {
           </div>
         </CardBody>
         <CardFooter>
-          <ul>
-            <li>
+          <Row>
+            <Col xs="12" sm="12" md="3" className="text-md-center">
               <div className="text-muted">Amount Issued</div>
               <strong>{this.countIssued()}</strong>
-            </li>
-            <li className="d-none d-md-table-cell">
+            </Col>
+            <Col xs="12" sm="12" md="3" className="text-md-center">
               <div className="text-muted">Amount Transferred</div>
               <strong>{this.countTransferred()}</strong>
-            </li>
-            <li>
+            </Col>
+            <Col xs="12" sm="12" md="3" className="text-md-center">
               <div className="text-muted">Accounts Involved</div>
               <strong>{this.countAccounts()}</strong>
-            </li>
-            <li className="d-none d-md-table-cell">
+            </Col>
+            <Col xs="12" sm="12" md="3" className="text-md-center">
               <div className="text-muted">Effect Count</div>
               <strong>{this.countEffects()}</strong>
-            </li>
-          </ul>
+            </Col>
+          </Row>
         </CardFooter>
       </Card>
     );
