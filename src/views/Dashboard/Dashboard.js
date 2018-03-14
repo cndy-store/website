@@ -37,6 +37,12 @@ const dataSetDefaults = {
   borderColor: 'rgba(255,255,255,.55)'
 };
 
+const amountIssuedTitle = stats => {
+  if (!stats) return 'CNDY Issued';
+
+  return `${stats.amount_issued} CNDY Issued`;
+};
+
 const amountIssuedData = effectsData => {
   if (!effectsData || !effectsData.length) return null;
 
@@ -56,6 +62,12 @@ const amountIssuedData = effectsData => {
   };
 };
 
+const accountsInvolvedTitle = stats => {
+  if (!stats) return 'Accounts';
+
+  return `${stats.accounts_involved} Accounts`;
+};
+
 const accountsInvolvedData = historyData => {
   if (!historyData) return null;
 
@@ -68,6 +80,12 @@ const accountsInvolvedData = historyData => {
   return {
     datasets: [dataset]
   };
+};
+
+const effectsGeneratedTitle = stats => {
+  if (!stats) return 'Effects';
+
+  return `${stats.effect_count} Effects`;
 };
 
 const effectsGeneratedData = historyData => {
@@ -143,7 +161,7 @@ class Dashboard extends Component {
         <Row>
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={'Issued'}
+              title={amountIssuedTitle(this.state.statsData)}
               subtitle={'Total amount of CNDY issued'}
               data={amountIssuedData(this.state.effectsData)}
             />
@@ -151,7 +169,7 @@ class Dashboard extends Component {
 
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={'Accounts'}
+              title={accountsInvolvedTitle(this.state.statsData)}
               subtitle={'Accounts making transactions'}
               data={accountsInvolvedData(this.state.historyData)}
             />
@@ -159,7 +177,7 @@ class Dashboard extends Component {
 
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={'Effects'}
+              title={effectsGeneratedTitle(this.state.statsData)}
               subtitle={'Number of Effects generated'}
               data={effectsGeneratedData(this.state.historyData)}
             />
