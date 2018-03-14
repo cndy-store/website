@@ -23,7 +23,10 @@ import {
   Input,
   Table
 } from 'reactstrap';
-import { extractLastEntryPerDay } from '../../lib/data_helpers';
+import {
+  extractAccumulatedPerDay,
+  extractLastEntryPerDay
+} from '../../lib/data_helpers';
 
 import MainChart from './MainChart';
 import CardChart from './CardChart';
@@ -34,10 +37,15 @@ const dataSetDefaults = {
   borderColor: 'rgba(255,255,255,.55)'
 };
 
-const amountIssuedData = historyData => {
-  if (!historyData) return null;
+const amountIssuedData = effectsData => {
+  if (!effectsData || !effectsData.length) return null;
 
-  const data = extractLastEntryPerDay(historyData, 'total_amount');
+  const issuer = effectsData[0].asset_issuer;
+  const issuerEffects = effectsData.filter(
+    effect => effect.type === 'account_debited' && effect.account === issuer
+  );
+
+  const data = extractAccumulatedPerDay(issuerEffects, 'amount');
   const dataset = Object.assign({}, dataSetDefaults, {
     label: 'CNDY issued',
     data: data
@@ -137,7 +145,7 @@ class Dashboard extends Component {
             <CardChart
               title={'Issued'}
               subtitle={'Total amount of CNDY issued'}
-              data={amountIssuedData(this.state.historyData)}
+              data={amountIssuedData(this.state.effectsData)}
             />
           </Col>
 
