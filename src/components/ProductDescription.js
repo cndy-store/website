@@ -27,8 +27,8 @@ export default class ProductDescription extends Component {
                 to manage custom local crypto assets on Stellar in a
                 user-friendly way.
                 <br />
-                A current proof-of-work of the analytics API and frontend can be
-                previewed here at <a href="http://cndy.store">cndy.store</a>.
+                A current proof of concept of the analytics API and frontend can
+                be previewed here at <a href="http://cndy.store">cndy.store</a>.
                 <br />
                 For more information and the current state of the
                 implementations, please visit our{' '}
