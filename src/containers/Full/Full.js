@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {Link, Switch, Route, Redirect} from 'react-router-dom';
-import {Container} from 'reactstrap';
+import React, { Component } from 'react';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import Header from '../../components/Header/';
 import Sidebar from '../../components/Sidebar/';
 import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
+import ProductDescription from '../../components/ProductDescription';
 
 import Dashboard from '../../views/Dashboard/';
 
@@ -16,9 +17,14 @@ class Full extends Component {
         <div className="app-body">
           <main className="main mt-4">
             <Container fluid>
-              <Dashboard/>
+              <Dashboard />
             </Container>
           </main>
+        </div>
+        <div className="app-body mt-0 info-body">
+          <Container>
+            <ProductDescription />
+          </Container>
         </div>
         <Footer />
       </div>

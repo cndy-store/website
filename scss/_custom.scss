@@ -9,3 +9,12 @@ $green : #169185;
 .card.bg-card-chart {
   background: $pink;
 }
+
+.info-body {
+  border-top: 1px solid $border-color;
+  background: $white;
+
+  .jumbotron {
+    background: none;
+  }
+}

@@ -1,13 +1,7 @@
-import React, {Component} from 'react';
-import {
-  Nav,
-  NavItem,
-  NavbarToggler,
-  NavbarBrand,
-} from 'reactstrap';
+import React, { Component } from 'react';
+import { Nav, NavItem, NavbarToggler, NavbarBrand } from 'reactstrap';
 
 class Header extends Component {
-
   sidebarToggle(e) {
     e.preventDefault();
     document.body.classList.toggle('sidebar-hidden');
@@ -31,7 +25,7 @@ class Header extends Component {
   render() {
     return (
       <header className="app-header navbar">
-        <NavbarBrand href="#"></NavbarBrand>
+        <NavbarBrand href="#" />
       </header>
     );
   }

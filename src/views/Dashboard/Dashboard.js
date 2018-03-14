@@ -117,7 +117,7 @@ class Dashboard extends Component {
     if (!this.state.loadErrors.length) return null;
 
     const errors = this.state.loadErrors.map(msg => {
-      return <p>{msg}</p>;
+      return <p key={msg}>{msg}</p>;
     });
 
     return (
@@ -133,7 +133,7 @@ class Dashboard extends Component {
       <div className="animated fadeIn">
         {this.renderLoadError()}
         <Row>
-          <Col md="12" lg="4">
+          <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
               title={'Issued'}
               subtitle={'Total amount of CNDY issued'}
@@ -141,7 +141,7 @@ class Dashboard extends Component {
             />
           </Col>
 
-          <Col md="12" lg="4">
+          <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
               title={'Accounts'}
               subtitle={'Accounts making transactions'}
@@ -149,7 +149,7 @@ class Dashboard extends Component {
             />
           </Col>
 
-          <Col md="12" lg="4">
+          <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
               title={'Effects'}
               subtitle={'Number of Effects generated'}
