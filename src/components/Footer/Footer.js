@@ -5,7 +5,10 @@ class Footer extends Component {
     return (
       <footer className="app-footer">
         <span>
-          <a href="http://cndy.store">CNDY</a> &copy; 2018
+          <a href="http://cndy.store">CNDY</a> &copy; 2018 &nbsp;
+          <a href="https://www.iubenda.com/privacy-policy/63674794">
+            Data Protection Policy
+          </a>
         </span>
         <span className="ml-auto">Made with ❤ and 🍭</span>
       </footer>
