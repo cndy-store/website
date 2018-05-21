@@ -20,7 +20,7 @@ export default class ProductDescription extends Component {
       <div>
         <Row>
           <Col>
-            <Jumbotron fluid>
+            <Jumbotron fluid className="pb-2">
               <h1 className="display-3">The CNDY Ecosystem</h1>
               <p className="lead">
                 The goal of the CNDY project is to create a complete ecosystem
@@ -39,8 +39,80 @@ export default class ProductDescription extends Component {
         </Row>
 
         <Row>
+          <Col>
+            <p>
+              In many regions across the world, local trade associations invent
+              their very own{' '}
+              <a href="https://en.wikipedia.org/wiki/Local_currency#List_of_local_currencies">
+                local currency
+              </a>, usually to incentivize buying from local businesses.
+            </p>
+
+            <p>
+              In most cases, this is achieved using some sort of paper coupons.
+              The process of issuing and distributing such coupons is cumbersome
+              and often degrades the local currency to be used as gift vouchers
+              instead of a real currency that is used in daily life. It is also
+              very hard for local trade associations to track the usage and
+              success of such coupons.
+            </p>
+
+            <p>
+              The <strong>CNDY</strong> (pronounced "candy") project provides
+              the necessary tools to solve these issues. Instead of having to
+              rely on paper coupons, the local community can easily create a
+              virtual currency that is easy to use for everyone!
+            </p>
+
+            <h2 className="h5">CNDY can:</h2>
+
+            <ul>
+              <li>create a custom currency on the Stellar Network</li>
+              <li>
+                abstract away creating and funding the underlying Stellar
+                account necessary to use the new currency
+              </li>
+              <li>
+                create the necessary trustlines and distribute tokens to the
+                newly created account
+              </li>
+              <li>
+                provide a mobile wallet that can be used to easily pay with the
+                local currency
+              </li>
+              <li>
+                show insights about the adaption and usage of the currency in
+                real time.
+              </li>
+            </ul>
+
+            <p>
+              <strong>CNDY</strong> enhances the Stellar ecosystem to embrace
+              white label currencies, so the end user does not have to bother
+              with the funding of a Stellar account and other technical details.
+            </p>
+
+            <p>
+              <strong>CNDY</strong> creates additional services beyond the
+              possibilities of the traditional paper coupon: Detailed{' '}
+              <a href="http://cndy.store">analytics</a> for the local trade
+              association, transparency by using the Stellar blockchain. It is
+              possible to easily transfer and pay with the new currency, making
+              it a real alternative to the regular currency.
+            </p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <hr />
+            <h2>The CNDY Toolset</h2>
+          </Col>
+        </Row>
+
+        <Row>
           <Col xs="12" sm="12" md="12" lg="6">
-            <h2>Issuer Command Line Interface</h2>
+            <h3 className="h5">Issuer Command Line Interface</h3>
             <p>
               The CLI is a set of tasks that can be used to setup and maintain
               an asset on the Stellar Network.
@@ -54,7 +126,7 @@ export default class ProductDescription extends Component {
               the mobile wallet.
             </p>
 
-            <h2>Mobile Wallet</h2>
+            <h3 className="h5">Mobile Wallet</h3>
             <p>
               To ensure customers actually use a custom crypto-asset,
               user-friendly and secure wallets are key. Our wallet will ensure
@@ -76,7 +148,7 @@ export default class ProductDescription extends Component {
 
         <Row className="my-3">
           <Col xs="12" sm="12" md="12" lg="6">
-            <h2>Analytics</h2>
+            <h3 className="h5">Analytics</h3>
             <p>
               The Analytics platform collects statistics for the custom asset
               from the Stellar Network and provides a convenient JSON API to
@@ -90,7 +162,7 @@ export default class ProductDescription extends Component {
               the charts above.
             </p>
 
-            <h2>Issuer Desktop Client</h2>
+            <h3 className="h5">Issuer Desktop Client</h3>
             <p>
               We want to create a desktop client that makes maintaining and
               issuing an asset even easier than using the CLI.
