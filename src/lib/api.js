@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const baseURL = 'http://api.cndy.store:3144';
+const baseURL = 'https://api.cndy.store';
 
 const url = path => `${baseURL}/${path}`;
 
