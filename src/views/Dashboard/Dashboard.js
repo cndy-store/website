@@ -23,6 +23,7 @@ import {
   Input,
   Table
 } from 'reactstrap';
+import {
   extractAccumulatedPerDay,
   extractLastEntryPerDay
 } from '../../lib/data_helpers';
