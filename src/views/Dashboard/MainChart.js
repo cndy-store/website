@@ -89,7 +89,8 @@ export default class MainChart extends Component {
     if (!this.props.statsData) {
       return 'N/A';
     } else {
-      return `${this.props.statsData.amount_issued} CNDY`;
+      const amountIssued = Number(this.props.statsData.amount_issued);
+      return `${amountIssued} CNDY`;
     }
   }
 
@@ -97,7 +98,8 @@ export default class MainChart extends Component {
     if (!this.props.statsData) {
       return 'N/A';
     } else {
-      return `${this.props.statsData.amount_transferred} CNDY`;
+      const amountTransferred = Number(this.props.statsData.amount_transferred);
+      return `${amountTransferred} CNDY`;
     }
   }
 

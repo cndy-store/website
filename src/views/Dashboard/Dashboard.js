@@ -23,7 +23,6 @@ import {
   Input,
   Table
 } from 'reactstrap';
-import {
   extractAccumulatedPerDay,
   extractLastEntryPerDay
 } from '../../lib/data_helpers';
@@ -40,7 +39,8 @@ const dataSetDefaults = {
 const amountIssuedTitle = stats => {
   if (!stats) return 'CNDY Issued';
 
-  return `${stats.amount_issued} CNDY Issued`;
+  const amountIssued = Number(stats.amount_issued);
+  return `${amountIssued} CNDY Issued`;
 };
 
 const amountIssuedData = effectsData => {
