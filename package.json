@@ -28,6 +28,7 @@
     "webpack-dev-server": "2.11.1"
   },
   "dependencies": {
+    "big.js": "^5.1.2",
     "bootstrap": "4.0.0",
     "chart.js": "2.7.1",
     "flag-icon-css": "2.9.0",
