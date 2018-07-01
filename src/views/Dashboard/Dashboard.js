@@ -102,6 +102,9 @@ const paymentsGeneratedData = stats => {
   };
 };
 
+let timer = null;
+let timerUpdatePeriod = 2 * 1000;
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -109,26 +112,86 @@ class Dashboard extends Component {
       loadErrors: [],
       statsData: null,
       latestData: null,
-      statsFrom: moment().subtract(1, 'months'),
-      statsTo: moment()
+      statsTimeWindow: 'all'
     };
 
-    setTimeout(() => {
+    this.handleTimeWindowChange = this.handleTimeWindowChange.bind(this);
+
+    timer = window.setTimeout(() => {
       this.loadData();
-    }, 1000);
+    }, 100);
+  }
+
+  statsUrlOptions() {
+    if (this.state.statsTimeWindow === 'all') {
+      return {};
+    } else if (this.state.statsTimeWindow === 'year') {
+      return {
+        from: moment()
+          .subtract(1, 'years')
+          .toJSON(),
+        to: moment().toJSON()
+      };
+    } else if (this.state.statsTimeWindow === 'month') {
+      return {
+        from: moment()
+          .subtract(1, 'months')
+          .toJSON(),
+        to: moment().toJSON()
+      };
+    } else if (this.state.statsTimeWindow === 'week') {
+      return {
+        from: moment()
+          .subtract(1, 'weeks')
+          .toJSON(),
+        to: moment().toJSON()
+      };
+    } else if (this.state.statsTimeWindow === 'day') {
+      return {
+        from: moment()
+          .subtract(1, 'days')
+          .toJSON(),
+        to: moment().toJSON()
+      };
+    } else {
+      throw 'Unknown time window!';
+    }
   }
 
   loadData() {
-    loadLatest()
+    if (timer) {
+      window.clearTimeout(timer);
+      timer = null;
+    }
+
+    const latest = loadLatest();
+
+    latest
       .then(response => this.setState({ latestData: response.latest }))
       .catch(e => this.addLoadError('Error loading latest data.', e));
 
-    loadStats({
-      from: this.state.statsFrom.toJSON(),
-      to: this.state.statsTo.toJSON()
-    })
+    const stats = loadStats(this.statsUrlOptions());
+
+    stats
       .then(response => this.setState({ statsData: response.stats }))
       .catch(e => this.addLoadError('Error loading asset stats.', e));
+
+    Promise.all([latest, stats]).then(() => {
+      timer = window.setTimeout(() => {
+        this.loadData();
+      }, timerUpdatePeriod);
+    });
+  }
+
+  handleTimeWindowChange(timeWindow) {
+    this.setState(
+      {
+        statsTimeWindow: timeWindow
+      },
+      () => {
+        this.loadData();
+      }
+    );
   }
 
   addLoadError(message, e) {
@@ -189,6 +252,8 @@ class Dashboard extends Component {
             <MainChart
               statsData={this.state.statsData}
               latestData={this.state.latestData}
+              statsTimeWindow={this.state.statsTimeWindow}
+              onTimeWindowChange={this.handleTimeWindowChange}
             />
           </Col>
         </Row>

@@ -8,7 +8,10 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  CardTitle
+  CardTitle,
+  Button,
+  ButtonToolbar,
+  ButtonGroup
 } from 'reactstrap';
 import { extractUniquePerDay } from '../../lib/data_helpers';
 import { pink, pinkChartBg, pinkLight } from '../../colors';
@@ -125,6 +128,34 @@ export default class MainChart extends Component {
               <div className="small text-muted">
                 Total amount of CNDY that was traded.
               </div>
+            </Col>
+
+            <Col sm="7" className="d-none d-sm-inline-block">
+              <ButtonToolbar className="float-right">
+                <ButtonGroup>
+                  <Button
+                    color="outline-secondary"
+                    onClick={() => this.props.onTimeWindowChange('week')}
+                    active={this.props.statsTimeWindow === 'week'}
+                  >
+                    Week
+                  </Button>
+                  <Button
+                    color="outline-secondary"
+                    onClick={() => this.props.onTimeWindowChange('month')}
+                    active={this.props.statsTimeWindow === 'month'}
+                  >
+                    Month
+                  </Button>
+                  <Button
+                    color="outline-secondary"
+                    onClick={() => this.props.onTimeWindowChange('all')}
+                    active={this.props.statsTimeWindow === 'all'}
+                  >
+                    All
+                  </Button>
+                </ButtonGroup>
+              </ButtonToolbar>
             </Col>
           </Row>
           <div
