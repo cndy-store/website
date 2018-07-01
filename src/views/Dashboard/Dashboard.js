@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import Big from 'big.js';
+import moment from 'moment';
 import {
   Alert,
   Badge,
@@ -107,7 +108,9 @@ class Dashboard extends Component {
     this.state = {
       loadErrors: [],
       statsData: null,
-      latestData: null
+      latestData: null,
+      statsFrom: moment().subtract(1, 'months'),
+      statsTo: moment()
     };
 
     setTimeout(() => {
@@ -120,7 +123,10 @@ class Dashboard extends Component {
       .then(response => this.setState({ latestData: response.latest }))
       .catch(e => this.addLoadError('Error loading latest data.', e));
 
-    loadStats()
+    loadStats({
+      from: this.state.statsFrom.toJSON(),
+      to: this.state.statsTo.toJSON()
+    })
       .then(response => this.setState({ statsData: response.stats }))
       .catch(e => this.addLoadError('Error loading asset stats.', e));
   }
