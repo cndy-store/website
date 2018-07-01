@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
+import Big from 'big.js';
 import {
   Alert,
   Badge,
@@ -25,34 +26,31 @@ import {
 } from 'reactstrap';
 import {
   extractAccumulatedPerDay,
-  extractLastEntryPerDay
+  extractLastEntryPerDay,
+  extractUniquePerDay,
+  extractUniquePerDayAndValue
 } from '../../lib/data_helpers';
 
 import MainChart from './MainChart';
 import CardChart from './CardChart';
-import { loadStats, loadHistory, loadEffects } from '../../lib/api';
+import { loadStats, loadLatest } from '../../lib/api';
 
 const dataSetDefaults = {
   backgroundColor: 'rgba(255,255,255,.2)',
   borderColor: 'rgba(255,255,255,.55)'
 };
 
-const amountIssuedTitle = stats => {
-  if (!stats) return 'CNDY Issued';
+const amountIssuedTitle = latest => {
+  if (!latest) return 'CNDY Issued';
 
-  const amountIssued = Number(stats.amount_issued);
+  const amountIssued = new Big(latest.issued).round();
   return `${amountIssued} CNDY Issued`;
 };
 
-const amountIssuedData = effectsData => {
-  if (!effectsData || !effectsData.length) return null;
+const amountIssuedData = stats => {
+  if (!stats || !stats.length) return null;
 
-  const issuer = effectsData[0].asset_issuer;
-  const issuerEffects = effectsData.filter(
-    effect => effect.type === 'account_debited' && effect.account === issuer
-  );
-
-  const data = extractAccumulatedPerDay(issuerEffects, 'amount');
+  const data = extractUniquePerDayAndValue(stats, 'issued');
   const dataset = Object.assign({}, dataSetDefaults, {
     label: 'CNDY issued',
     data: data
@@ -63,16 +61,16 @@ const amountIssuedData = effectsData => {
   };
 };
 
-const accountsInvolvedTitle = stats => {
-  if (!stats) return 'Accounts';
+const accountsInvolvedTitle = latest => {
+  if (!latest) return 'Accounts';
 
-  return `${stats.accounts_involved} Accounts`;
+  return `${latest.accounts_with_payments} Accounts`;
 };
 
-const accountsInvolvedData = historyData => {
-  if (!historyData) return null;
+const accountsInvolvedData = stats => {
+  if (!stats) return null;
 
-  const data = extractLastEntryPerDay(historyData, 'num_accounts');
+  const data = extractUniquePerDayAndValue(stats, 'accounts_with_payments');
   const dataset = Object.assign({}, dataSetDefaults, {
     label: 'Accounts involved',
     data: data
@@ -83,18 +81,18 @@ const accountsInvolvedData = historyData => {
   };
 };
 
-const effectsGeneratedTitle = stats => {
-  if (!stats) return 'Effects';
+const paymentsGeneratedTitle = latest => {
+  if (!latest) return 'Payments';
 
-  return `${stats.effect_count} Effects`;
+  return `${latest.payments} Payments`;
 };
 
-const effectsGeneratedData = historyData => {
-  if (!historyData) return null;
+const paymentsGeneratedData = stats => {
+  if (!stats) return null;
 
-  const data = extractLastEntryPerDay(historyData, 'num_effects');
+  const data = extractLastEntryPerDay(stats, 'payments');
   const dataset = Object.assign({}, dataSetDefaults, {
-    label: 'Effects generated',
+    label: 'Payments send between accounts',
     data: data
   });
 
@@ -108,9 +106,8 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       loadErrors: [],
-      historyData: null,
       statsData: null,
-      effectsData: null
+      latestData: null
     };
 
     setTimeout(() => {
@@ -119,16 +116,12 @@ class Dashboard extends Component {
   }
 
   loadData() {
-    loadHistory()
-      .then(response => this.setState({ historyData: response.history }))
-      .catch(e => this.addLoadError('Error loading asset history', e));
-
-    loadEffects()
-      .then(response => this.setState({ effectsData: response.effects }))
-      .catch(e => this.addLoadError('Error loading effects', e));
+    loadLatest()
+      .then(response => this.setState({ latestData: response.latest }))
+      .catch(e => this.addLoadError('Error loading latest data.', e));
 
     loadStats()
-      .then(response => this.setState({ statsData: response }))
+      .then(response => this.setState({ statsData: response.stats }))
       .catch(e => this.addLoadError('Error loading asset stats.', e));
   }
 
@@ -162,25 +155,25 @@ class Dashboard extends Component {
         <Row>
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={amountIssuedTitle(this.state.statsData)}
+              title={amountIssuedTitle(this.state.latestData)}
               subtitle={'Total amount of CNDY issued'}
-              data={amountIssuedData(this.state.effectsData)}
+              data={amountIssuedData(this.state.statsData)}
             />
           </Col>
 
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={accountsInvolvedTitle(this.state.statsData)}
+              title={accountsInvolvedTitle(this.state.latestData)}
               subtitle={'Accounts making transactions'}
-              data={accountsInvolvedData(this.state.historyData)}
+              data={accountsInvolvedData(this.state.statsData)}
             />
           </Col>
 
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={effectsGeneratedTitle(this.state.statsData)}
-              subtitle={'Number of Effects generated'}
-              data={effectsGeneratedData(this.state.historyData)}
+              title={paymentsGeneratedTitle(this.state.latestData)}
+              subtitle={'Number of Payments'}
+              data={paymentsGeneratedData(this.state.statsData)}
             />
           </Col>
         </Row>
@@ -189,8 +182,7 @@ class Dashboard extends Component {
           <Col>
             <MainChart
               statsData={this.state.statsData}
-              historyData={this.state.historyData}
-              effectsData={this.state.effectsData}
+              latestData={this.state.latestData}
             />
           </Col>
         </Row>

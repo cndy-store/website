@@ -25,9 +25,7 @@ const chartOptions = {
         distribution: 'linear',
         time: {
           unit: 'day',
-          displayFormats: {
-            hour: 'MMM D hA'
-          }
+          tooltipFormat: 'MMM D YYYY'
         }
       }
     ],

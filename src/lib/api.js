@@ -4,16 +4,12 @@ const baseURL = 'https://api.cndy.store';
 
 const url = path => `${baseURL}/${path}`;
 
-const loadHistory = () => {
-  return $.getJSON(url('history'));
-};
-
-const loadEffects = () => {
-  return $.getJSON(url('effects'));
+const loadLatest = () => {
+  return $.getJSON(url('stats/latest'));
 };
 
 const loadStats = () => {
   return $.getJSON(url('stats'));
 };
 
-export { loadStats, loadHistory, loadEffects };
+export { loadStats, loadLatest };

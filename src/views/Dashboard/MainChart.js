@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardTitle
 } from 'reactstrap';
-import { extractAccumulatedPerDay } from '../../lib/data_helpers';
+import { extractUniquePerDay } from '../../lib/data_helpers';
 import { pink, pinkChartBg, pinkLight } from '../../colors';
 
 const chartOptions = {
@@ -29,9 +29,7 @@ const chartOptions = {
         },
         time: {
           unit: 'day',
-          displayFormats: {
-            hour: 'MMM D hA'
-          }
+          tooltipFormat: 'MMM D YYYY'
         }
       }
     ],
@@ -56,7 +54,7 @@ const chartOptions = {
 };
 
 const dataSetDefaults = {
-  label: 'Total CNDY issued',
+  label: 'Total transferred',
   backgroundColor: pinkChartBg,
   borderColor: pink,
   borderWidth: 2,
@@ -64,13 +62,11 @@ const dataSetDefaults = {
   lineTension: 0.3
 };
 
-const generateChartData = effectsData => {
-  const onlyCredited = effectsData.filter(
-    effect => effect.type === 'account_credited'
-  );
-
-  const data = extractAccumulatedPerDay(onlyCredited, 'amount');
-  const dataset = Object.assign({}, dataSetDefaults, { data: data });
+const generateChartData = stats => {
+  const data = extractUniquePerDay(stats, 'transferred');
+  const dataset = Object.assign({}, dataSetDefaults, {
+    data: data
+  });
 
   return {
     datasets: [dataset]
@@ -79,43 +75,43 @@ const generateChartData = effectsData => {
 
 export default class MainChart extends Component {
   renderChart() {
-    if (!this.props.effectsData) return null;
-    const data = generateChartData(this.props.effectsData);
+    if (!this.props.statsData) return null;
+    const data = generateChartData(this.props.statsData);
 
     return <Line data={data} options={chartOptions} height={300} />;
   }
 
   countIssued() {
-    if (!this.props.statsData) {
+    if (!this.props.latestData) {
       return 'N/A';
     } else {
-      const amountIssued = Number(this.props.statsData.amount_issued);
+      const amountIssued = Number(this.props.latestData.issued);
       return `${amountIssued} CNDY`;
     }
   }
 
   countTransferred() {
-    if (!this.props.statsData) {
+    if (!this.props.latestData) {
       return 'N/A';
     } else {
-      const amountTransferred = Number(this.props.statsData.amount_transferred);
+      const amountTransferred = Number(this.props.latestData.transferred);
       return `${amountTransferred} CNDY`;
     }
   }
 
-  countAccounts() {
-    if (!this.props.statsData) {
+  countAccountsWithTrustline() {
+    if (!this.props.latestData) {
       return 'N/A';
     } else {
-      return `${this.props.statsData.accounts_involved} Accounts`;
+      return `${this.props.latestData.accounts_with_trustline} Accounts`;
     }
   }
 
-  countEffects() {
-    if (!this.props.statsData) {
+  countAccountsWithPayments() {
+    if (!this.props.latestData) {
       return 'N/A';
     } else {
-      return `${this.props.statsData.effect_count} Effects`;
+      return `${this.props.latestData.accounts_with_payments} Accounts`;
     }
   }
 
@@ -149,12 +145,12 @@ export default class MainChart extends Component {
               <strong>{this.countTransferred()}</strong>
             </Col>
             <Col xs="12" sm="12" md="3" className="text-md-center">
-              <div className="text-muted">Accounts Involved</div>
-              <strong>{this.countAccounts()}</strong>
+              <div className="text-muted">Accounts w/ Trustlines</div>
+              <strong>{this.countAccountsWithTrustline()}</strong>
             </Col>
             <Col xs="12" sm="12" md="3" className="text-md-center">
-              <div className="text-muted">Effect Count</div>
-              <strong>{this.countEffects()}</strong>
+              <div className="text-muted">Accounts w/ Payments</div>
+              <strong>{this.countAccountsWithPayments()}</strong>
             </Col>
           </Row>
         </CardFooter>
