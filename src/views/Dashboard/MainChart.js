@@ -39,9 +39,7 @@ const chartOptions = {
     yAxes: [
       {
         ticks: {
-          beginAtZero: true,
-          maxTicksLimit: 5,
-          stepSize: 1000
+          maxTicksLimit: 5
         }
       }
     ]
