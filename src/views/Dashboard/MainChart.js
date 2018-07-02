@@ -8,10 +8,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  CardTitle,
-  Button,
-  ButtonToolbar,
-  ButtonGroup
+  CardTitle
 } from 'reactstrap';
 import { extractUniquePerDay } from '../../lib/data_helpers';
 import { pink, pinkChartBg, pinkLight } from '../../colors';
@@ -82,40 +79,6 @@ export default class MainChart extends Component {
     return <Line data={data} options={chartOptions} height={300} />;
   }
 
-  countIssued() {
-    if (!this.props.latestData) {
-      return 'N/A';
-    } else {
-      const amountIssued = Number(this.props.latestData.issued);
-      return `${amountIssued} CNDY`;
-    }
-  }
-
-  countTransferred() {
-    if (!this.props.latestData) {
-      return 'N/A';
-    } else {
-      const amountTransferred = Number(this.props.latestData.transferred);
-      return `${amountTransferred} CNDY`;
-    }
-  }
-
-  countAccountsWithTrustline() {
-    if (!this.props.latestData) {
-      return 'N/A';
-    } else {
-      return `${this.props.latestData.accounts_with_trustline} Accounts`;
-    }
-  }
-
-  countAccountsWithPayments() {
-    if (!this.props.latestData) {
-      return 'N/A';
-    } else {
-      return `${this.props.latestData.accounts_with_payments} Accounts`;
-    }
-  }
-
   render() {
     return (
       <Card>
@@ -127,34 +90,6 @@ export default class MainChart extends Component {
                 Total amount of CNDY that was traded.
               </div>
             </Col>
-
-            <Col sm="7" className="d-none d-sm-inline-block">
-              <ButtonToolbar className="float-right">
-                <ButtonGroup>
-                  <Button
-                    color="outline-secondary"
-                    onClick={() => this.props.onTimeWindowChange('week')}
-                    active={this.props.statsTimeWindow === 'week'}
-                  >
-                    Week
-                  </Button>
-                  <Button
-                    color="outline-secondary"
-                    onClick={() => this.props.onTimeWindowChange('month')}
-                    active={this.props.statsTimeWindow === 'month'}
-                  >
-                    Month
-                  </Button>
-                  <Button
-                    color="outline-secondary"
-                    onClick={() => this.props.onTimeWindowChange('all')}
-                    active={this.props.statsTimeWindow === 'all'}
-                  >
-                    All
-                  </Button>
-                </ButtonGroup>
-              </ButtonToolbar>
-            </Col>
           </Row>
           <div
             className="chart-wrapper"
@@ -163,26 +98,6 @@ export default class MainChart extends Component {
             {this.renderChart()}
           </div>
         </CardBody>
-        <CardFooter>
-          <Row>
-            <Col xs="12" sm="12" md="3" className="text-md-center">
-              <div className="text-muted">Amount Issued</div>
-              <strong>{this.countIssued()}</strong>
-            </Col>
-            <Col xs="12" sm="12" md="3" className="text-md-center">
-              <div className="text-muted">Amount Transferred</div>
-              <strong>{this.countTransferred()}</strong>
-            </Col>
-            <Col xs="12" sm="12" md="3" className="text-md-center">
-              <div className="text-muted">Accounts w/ Trustlines</div>
-              <strong>{this.countAccountsWithTrustline()}</strong>
-            </Col>
-            <Col xs="12" sm="12" md="3" className="text-md-center">
-              <div className="text-muted">Accounts w/ Payments</div>
-              <strong>{this.countAccountsWithPayments()}</strong>
-            </Col>
-          </Row>
-        </CardFooter>
       </Card>
     );
   }

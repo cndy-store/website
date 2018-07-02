@@ -33,6 +33,7 @@ import {
 } from '../../lib/data_helpers';
 
 import MainChart from './MainChart';
+import GlobalChart from './GlobalChart';
 import CardChart from './CardChart';
 import { loadStats, loadLatest } from '../../lib/api';
 
@@ -41,11 +42,19 @@ const dataSetDefaults = {
   borderColor: 'rgba(255,255,255,.55)'
 };
 
-const amountIssuedTitle = latest => {
-  if (!latest) return 'CNDY Issued';
+const diffByAttribute = (list, attrName) => {
+  if (!list.length) return 0;
 
-  const amountIssued = new Big(latest.issued).round();
-  return `${amountIssued} CNDY Issued`;
+  const first = new Big(list[0][attrName]);
+  const last = new Big(list[list.length - 1][attrName]);
+  return last.minus(first).round();
+};
+
+const amountIssuedTitle = stats => {
+  if (!stats) return 'CNDY Issued';
+
+  const diff = diffByAttribute(stats, 'issued');
+  return `+${diff} CNDY Issued`;
 };
 
 const amountIssuedData = stats => {
@@ -62,10 +71,11 @@ const amountIssuedData = stats => {
   };
 };
 
-const accountsInvolvedTitle = latest => {
-  if (!latest) return 'Accounts';
+const accountsInvolvedTitle = stats => {
+  if (!stats) return 'Accounts';
 
-  return `${latest.accounts_with_payments} Accounts`;
+  const diff = diffByAttribute(stats, 'accounts_with_payments');
+  return `+${diff} Accounts`;
 };
 
 const accountsInvolvedData = stats => {
@@ -82,10 +92,11 @@ const accountsInvolvedData = stats => {
   };
 };
 
-const paymentsGeneratedTitle = latest => {
-  if (!latest) return 'Payments';
+const paymentsGeneratedTitle = stats => {
+  if (!stats) return 'Payments';
 
-  return `${latest.payments} Payments`;
+  const diff = diffByAttribute(stats, 'payments');
+  return `+${diff} Payments`;
 };
 
 const paymentsGeneratedData = stats => {
@@ -222,9 +233,38 @@ class Dashboard extends Component {
       <div className="animated fadeIn">
         {this.renderLoadError()}
         <Row>
+          <Col>
+            <ButtonToolbar className="float-right mb-4">
+              <ButtonGroup>
+                <Button
+                  color="outline-secondary"
+                  onClick={() => this.handleTimeWindowChange('week')}
+                  active={this.state.statsTimeWindow === 'week'}
+                >
+                  Week
+                </Button>
+                <Button
+                  color="outline-secondary"
+                  onClick={() => this.handleTimeWindowChange('month')}
+                  active={this.state.statsTimeWindow === 'month'}
+                >
+                  Month
+                </Button>
+                <Button
+                  color="outline-secondary"
+                  onClick={() => this.handleTimeWindowChange('all')}
+                  active={this.state.statsTimeWindow === 'all'}
+                >
+                  All
+                </Button>
+              </ButtonGroup>
+            </ButtonToolbar>
+          </Col>
+        </Row>
+        <Row>
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={amountIssuedTitle(this.state.latestData)}
+              title={amountIssuedTitle(this.state.statsData)}
               subtitle={'Total amount of CNDY issued'}
               data={amountIssuedData(this.state.statsData)}
             />
@@ -232,7 +272,7 @@ class Dashboard extends Component {
 
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={accountsInvolvedTitle(this.state.latestData)}
+              title={accountsInvolvedTitle(this.state.statsData)}
               subtitle={'Accounts making transactions'}
               data={accountsInvolvedData(this.state.statsData)}
             />
@@ -240,7 +280,7 @@ class Dashboard extends Component {
 
           <Col xs="12" sm="12" md="12" lg="4">
             <CardChart
-              title={paymentsGeneratedTitle(this.state.latestData)}
+              title={paymentsGeneratedTitle(this.state.statsData)}
               subtitle={'Number of Payments'}
               data={paymentsGeneratedData(this.state.statsData)}
             />
@@ -249,12 +289,13 @@ class Dashboard extends Component {
 
         <Row>
           <Col>
-            <MainChart
-              statsData={this.state.statsData}
-              latestData={this.state.latestData}
-              statsTimeWindow={this.state.statsTimeWindow}
-              onTimeWindowChange={this.handleTimeWindowChange}
-            />
+            <MainChart statsData={this.state.statsData} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <GlobalChart latestData={this.state.latestData} />
           </Col>
         </Row>
       </div>
