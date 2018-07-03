@@ -3,7 +3,6 @@ import { Bar, Line } from 'react-chartjs-2';
 import {
   Row,
   Col,
-  Progress,
   Card,
   CardHeader,
   CardBody,

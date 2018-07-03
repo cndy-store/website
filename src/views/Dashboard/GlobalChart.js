@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Row,
   Col,
-  Progress,
   Card,
   CardHeader,
   CardBody,

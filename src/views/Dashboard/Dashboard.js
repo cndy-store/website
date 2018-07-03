@@ -4,31 +4,14 @@ import Big from 'big.js';
 import moment from 'moment';
 import {
   Alert,
-  Badge,
   Row,
   Col,
-  Progress,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
   Button,
   ButtonToolbar,
-  ButtonGroup,
-  ButtonDropdown,
-  Label,
-  Input,
-  Table
+  ButtonGroup
 } from 'reactstrap';
 import {
-  extractAccumulatedPerDay,
   extractLastEntryPerDay,
-  extractUniquePerDay,
   extractUniquePerDayAndValue
 } from '../../lib/data_helpers';
 
