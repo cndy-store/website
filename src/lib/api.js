@@ -2,7 +2,16 @@ import $ from 'jquery';
 
 const baseURL = 'https://api.cndy.store';
 
-const buildUrl = (path, params) => `${baseURL}/${path}?${$.param(params)}`;
+const defaultParams = {
+  asset_code: 'CNDY',
+  asset_issuer: 'GCJXUXAY4UQYPYVKRMQJJW3IG4AFBMT7RLA7DVB6UZDMJNMGEMFSCVRY'
+};
+
+const buildUrl = (path, params) => {
+  const mergedParams = Object.assign({}, defaultParams, params);
+
+  return `${baseURL}/${path}?${$.param(mergedParams)}`;
+};
 
 const loadLatest = (params = {}) => {
   const url = buildUrl('stats/latest', params);
