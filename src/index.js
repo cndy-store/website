@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 // Styles
 // Import Flag Icons Set
@@ -16,4 +17,20 @@ import '../scss/core/_dropdown-menu-right.scss';
 // Containers
 import Full from './containers/Full/';
 
-ReactDOM.render(<Full />, document.getElementById('root'));
+// Views
+import PrivacyPolicyApp from './views/Pages/PrivacyPolicyApp/';
+
+ReactDOM.render(
+  <HashRouter>
+    <Switch>
+      <Route
+        exact
+        path="/privacy-policy-apps"
+        name="CNDY Wallet Privacy Policy"
+        component={PrivacyPolicyApp}
+      />
+      <Route path="/" name="Home" component={Full} />
+    </Switch>
+  </HashRouter>,
+  document.getElementById('root')
+);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavbarToggler, NavbarBrand } from 'reactstrap';
+import { Nav, NavItem, NavLink, NavbarToggler, NavbarBrand } from 'reactstrap';
 
 class Header extends Component {
   sidebarToggle(e) {
@@ -26,6 +26,14 @@ class Header extends Component {
     return (
       <header className="app-header navbar">
         <NavbarBrand href="#" />
+        <Nav navbar>
+          <NavItem className="px-3">
+            <NavLink href="#/">Dashboard</NavLink>
+          </NavItem>
+          <NavItem className="px-3">
+            <NavLink href="#/about">About</NavLink>
+          </NavItem>
+        </Nav>
       </header>
     );
   }

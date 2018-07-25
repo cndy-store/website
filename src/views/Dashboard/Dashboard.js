@@ -116,6 +116,10 @@ class Dashboard extends Component {
     }, 100);
   }
 
+  componentWillUnmount() {
+    if (timer) window.clearTimeout(timer);
+  }
+
   statsUrlOptions() {
     if (this.state.statsTimeWindow === 'all') {
       return {};
