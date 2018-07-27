@@ -25,17 +25,46 @@ export default class ProductDescription extends Component {
                 <Jumbotron fluid className="pb-2">
                   <h1 className="display-3">The CNDY Ecosystem</h1>
                   <p className="lead">
-                    The goal of the CNDY project is to create a complete
-                    ecosystem to manage custom local crypto assets on Stellar in
-                    a user-friendly way.
+                    <strong>CNDY</strong> (pronounced "candy") enables trade
+                    associations and organic food markets to create a digital
+                    local currency, enabling their customers to support their
+                    local businesses.
+
                     <br />
-                    A current proof of concept of the analytics API and frontend
-                    can be previewed here at{' '}
-                    <a href="http://cndy.store">cndy.store</a>.
+                    Its intention is to provide a safe and easy to use
+                    alternative to local currencies, currently often just paper
+                    coupons.
+
                     <br />
-                    For more information and the current state of the
-                    implementations, please visit our{' '}
+                    With white labeled mobile apps and detailed{' '}
+                    <a href="/#/dashboard">insights</a> of the currency usage
+                    and adaption, <strong>CNDY</strong> goes way beyond the
+                    possibilities of traditional paper coupons.
+
+                    <br />
+                    It abstracts away the difficulties of creating and managing
+                    assets on the blockchain. It uses{' '}
+                    <a href="https://www.stellar.org">Stellar</a>,
+                    one of the most stable and widely used blockchains available
+                    today. With its strong and well documented focus on custom
+                    assets, Stellar is the perfect fit for your local currency.
+
+                    <br/>
+                    <strong>CNDY</strong> is open source! All code is made
+                    available on our{' '}
                     <a href="https://github.com/cndy-store">GitHub Account</a>.
+
+<!-- TODO: Move to a section "current state/ see it in action" or so -->
+                    <br />
+                    The white label app is currently tested with the
+                    <strong>CNDY coin</strong> - a tradeable local crypto asset
+                    to pay sweets at a candy bar.
+
+                    <br />
+                    You can follow our current candy consumption in real time on
+                    the{' '}
+                    <a href="http://cndy.store">Analytics Dashboard</a>.
+<!-- TODO: END -->
                   </p>
                 </Jumbotron>
               </CardHeader>
@@ -65,28 +94,30 @@ export default class ProductDescription extends Component {
                 </p>
 
                 <p>
-                  The <strong>CNDY</strong> (pronounced "candy") project
-                  provides the necessary tools to solve these issues. Instead of
-                  having to rely on paper coupons, the local community can
-                  easily create a virtual currency that is easy to use for
-                  everyone!
+                  The <strong>CNDY</strong> ecosystem provides the necessary tools
+                  to solve these issues. Instead of having to rely on paper
+                  coupons, the local community can easily create a virtual
+                  currency that is easy to use for everyone!
                 </p>
 
-                <h2 className="h5">CNDY can:</h2>
+                <h2 className="h5">CNDY can</h2>
 
                 <ul>
-                  <li>create a custom currency on the Stellar Network</li>
+                  <li>
+                    create a custom currency on the Stellar Network
+                  </li>
                   <li>
                     abstract away creating and funding the underlying Stellar
-                    account necessary to use the new currency
+                    account necessary to use the new currency <!-- TODO: duplicate -->
                   </li>
                   <li>
                     create the necessary trustlines and distribute tokens to the
                     newly created account
                   </li>
                   <li>
-                    provide a mobile wallet that can be used to easily pay with
-                    the local currency
+                    provide a white-labeled mobile wallet (available for iOS and
+                    Android) so customers can easily trade and pay with your
+                    currency
                   </li>
                   <li>
                     show insights about the adaption and usage of the currency
@@ -95,19 +126,13 @@ export default class ProductDescription extends Component {
                 </ul>
 
                 <p>
-                  <strong>CNDY</strong> enhances the Stellar ecosystem to
-                  embrace white label currencies, so the end user does not have
-                  to bother with the funding of a Stellar account and other
-                  technical details.
-                </p>
-
-                <p>
                   <strong>CNDY</strong> creates additional services beyond the
-                  possibilities of the traditional paper coupon: Detailed{' '}
-                  <a href="http://cndy.store">analytics</a> for the local trade
-                  association, transparency by using the Stellar blockchain. It
-                  is possible to easily transfer and pay with the new currency,
-                  making it a real alternative to the regular currency.
+                  possibilities of the traditional paper coupon: Detailed
+                  insights for the local trade association using our{' '}
+                  <a href="https://cndy.store/#/dashboard">Analytics Dashboard</a>,
+                  transparency by using the Stellar blockchain. It is possible
+                  to easily transfer and pay with the new currency, making it a
+                  real alternative to the regular currency.
                 </p>
               </CardBody>
             </Card>
@@ -117,7 +142,7 @@ export default class ProductDescription extends Component {
         <Row>
           <Col>
             <hr />
-            <h2>The CNDY Toolset</h2>
+            <h2>CNDY components</h2>
           </Col>
         </Row>
 
@@ -125,8 +150,8 @@ export default class ProductDescription extends Component {
           <Col xs="12" sm="12" md="12" lg="6">
             <h3 className="h5">Issuer Command Line Interface</h3>
             <p>
-              The CLI is a set of tasks that can be used to setup and maintain
-              an asset on the Stellar Network.
+              The CLI provides easy access to all tasks required setup and
+              maintain an asset on the Stellar Network.
               <br />
               Together with the mobile wallets the CLI makes it very easy to
               create and fund new keypairs and will take care of the required
@@ -135,21 +160,30 @@ export default class ProductDescription extends Component {
               This way, the issuer can provide a simple setup routine for the
               customer by generating a QR code, that the customer can scan with
               the mobile wallet.
+<!-- TODO: White label app makes this obsolete?? -->
+              <br />
+              Like all tools in the <strong>CNDY</strong> ecosystem, the CLI is
+              open source and available on{' '}
+              <a href="https://github.com/cndy-store/cli">Github</a>.
             </p>
 
             <h3 className="h5">Mobile Wallet</h3>
             <p>
               To ensure customers actually use a custom crypto-asset,
-              user-friendly and secure wallets are key. Our wallet will ensure
-              that everyone will be able to use the asset, whether or not they
-              have experience in the cryptosphere.
+              user-friendly and secure wallets are key. Our wallet ensures that
+              everyone will be able to use the asset, whether or not they have
+              experience in the cryptosphere.
               <br />
-              Users will be able to check their current balance as well as to
-              retrieve and send tokens to others.
+              Users can check their current balance and retrieve and send tokens
+              of your local currency to others by simply scanning a QR code.
               <br />
-              The wallet is developed in React Native and will be available soon
-              for Android and iOS.
+              The wallet is developed in React Native and is be available for
+              Android and iOS.
+              <br />
+              The wallet is open source and available on{' '}
+              <a href="https://github.com/cndy-store/mobile-wallet">Github</a>.
             </p>
+<!-- TODO: AppStore links? -->
           </Col>
 
           <Col xs="12" sm="12" md="12" lg="6">
@@ -169,8 +203,13 @@ export default class ProductDescription extends Component {
               asset and get insights about the development and usage of the
               asset over time.
               <br />
-              The API is developed in Go and an already working version powers
-              the charts above.
+              The API is developed in Go and powers the charts on the{' '}
+              <a href="https://cndy.store/#/dashboard">Analytics Dashboard</a>.
+              <br />
+              The API is open source,{' '}
+              <a href="https://api.cndy.store">well documented</a> and tested.
+              You can find the source code on{' '}
+              <a href="https://github.com/cndy-store/analytics">Github</a>.
             </p>
 
             <h3 className="h5">Issuer Desktop Client</h3>
@@ -182,6 +221,8 @@ export default class ProductDescription extends Component {
               setting up new mobile wallets for customers. It will be the
               frontend for the Analytics server, so an issuer has everything in
               place to make their asset successful.
+              <br />
+              <i>NOTE: This is a planned feature and not available yet.</i>
             </p>
           </Col>
 
