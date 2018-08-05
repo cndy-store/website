@@ -24,7 +24,7 @@ export default class ProductDescription extends Component {
           <div className="animated fadeIn">
             <LandingRow className="banner align-items-end">
               <Col>
-                <Jumbotron fluid className="pb-2">
+                <Jumbotron fluid className="pb-2 text-with-shadow">
                   <h1 className="display-3">The CNDY Ecosystem</h1>
                   <p className="lead">
                     <strong>CNDY</strong> (pronounced "candy") enables trade
@@ -44,8 +44,8 @@ export default class ProductDescription extends Component {
                   <br />
                   With white labeled mobile apps and detailed{' '}
                   <a href="/#/dashboard">insights</a> of the currency usage and
-                  adaption, <strong>CNDY</strong> goes way beyond the
-                  possibilities of traditional paper coupons.
+                  adaption, CNDY goes way beyond the possibilities of
+                  traditional paper coupons.
                 </p>
 
                 <p className="lead">
@@ -85,51 +85,66 @@ export default class ProductDescription extends Component {
                 </p>
 
                 <p>
-                  The <strong>CNDY</strong> ecosystem provides the necessary
-                  tools to solve these issues. Instead of having to rely on
-                  paper coupons, the local community can easily create a virtual
-                  currency that is easy to use for everyone!
+                  The CNDY ecosystem provides the necessary tools to solve these
+                  issues. Instead of having to rely on paper coupons, the local
+                  community can easily create a virtual currency that is easy to
+                  use for everyone!
                 </p>
               </Col>
 
               <Col xs="12" sm="12" md="12" lg="6">
                 <Card>
                   <CardBody>
-                    <h2 className="h5">CNDY can</h2>
+                    <p>
+                      <strong>CNDY</strong> creates additional services beyond
+                      the possibilities of the traditional paper coupon:
+                      Detailed insights for the local trade association using
+                      our{' '}
+                      <a href="https://cndy.store/#/dashboard">
+                        Analytics Dashboard
+                      </a>, transparency by using the Stellar blockchain.
+                    </p>
+                    <p>
+                      It is possible to easily transfer and pay with the new
+                      currency, making it a real alternative to the regular
+                      currency.
+                    </p>
 
-                    <ul>
-                      <li>Create a custom currency on the Stellar Network</li>
-                      <li>
-                        Abstract away creating and funding the underlying
-                        Stellar account necessary to use the new currency
-                      </li>
-                      <li>
-                        Create the necessary trustlines and distribute tokens to
-                        the newly created account
-                      </li>
-                      <li>
-                        Provide a white-labeled mobile wallet (available for iOS
-                        and Android) so customers can easily trade and pay with
-                        your currency
-                      </li>
-                      <li>
-                        Show insights about the adaption and usage of the
-                        currency in real time.
-                      </li>
-                    </ul>
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-lg btn-block"
+                    >
+                      Visit Dashboard
+                    </button>
                   </CardBody>
                 </Card>
+              </Col>
+            </LandingRow>
 
-                <p>
-                  <strong>CNDY</strong> creates additional services beyond the
-                  possibilities of the traditional paper coupon: Detailed
-                  insights for the local trade association using our{' '}
-                  <a href="https://cndy.store/#/dashboard">
-                    Analytics Dashboard
-                  </a>, transparency by using the Stellar blockchain. It is
-                  possible to easily transfer and pay with the new currency,
-                  making it a real alternative to the regular currency.
-                </p>
+            <LandingRow>
+              <Col xs="12" sm="12" md="12" lg="6">
+                <h2 className="h5">CNDY can</h2>
+
+                <ul>
+                  <li>Create a custom currency on the Stellar Network</li>
+                  <li>
+                    Abstract away creating and funding the underlying Stellar
+                    account necessary to use the new currency
+                  </li>
+                  <li>
+                    Create the necessary trustlines and distribute tokens to the
+                    newly created account
+                  </li>
+                  <li>
+                    Provide a white-labeled mobile wallet (available for iOS and
+                    Android) so customers can easily trade and pay with your
+                    currency
+                  </li>
+                  <li>
+                    Show insights about the adaption and usage of the currency
+                    in real time.
+                  </li>
+                </ul>
               </Col>
             </LandingRow>
 
@@ -138,9 +153,8 @@ export default class ProductDescription extends Component {
                 <h3>CNDY is ready! See it in action!</h3>
 
                 <p className="lead">
-                  The white label app is currently tested with the{' '}
-                  <strong>CNDY coin</strong> - a tradeable local crypto asset to
-                  pay sweets at a candy bar.
+                  The white label app is currently tested with the CNDY coin - a
+                  tradeable local crypto asset to pay sweets at a candy bar.
                 </p>
                 <p className="lead">
                   You can follow our current candy consumption in real time on
@@ -252,8 +266,8 @@ export default class ProductDescription extends Component {
                   the customer by generating a QR code, that the customer can
                   scan with the mobile wallet.
                   <br />
-                  Like all tools in the <strong>CNDY</strong> ecosystem, the CLI
-                  is open source and available on{' '}
+                  Like all tools in the CNDY ecosystem, the CLI is open source
+                  and available on{' '}
                   <a href="https://github.com/cndy-store/cli">GitHub</a>.
                 </p>
               </Col>
