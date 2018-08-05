@@ -99,10 +99,8 @@ export default class ProductDescription extends Component {
                       <strong>CNDY</strong> creates additional services beyond
                       the possibilities of the traditional paper coupon:
                       Detailed insights for the local trade association using
-                      our{' '}
-                      <a href="https://cndy.store/#/dashboard">
-                        Analytics Dashboard
-                      </a>, transparency by using the Stellar blockchain.
+                      our <a href="/#/dashboard">Analytics Dashboard</a>,
+                      transparency by using the Stellar blockchain.
                     </p>
                     <p>
                       It is possible to easily transfer and pay with the new
@@ -110,12 +108,12 @@ export default class ProductDescription extends Component {
                       currency.
                     </p>
 
-                    <button
-                      type="button"
-                      className="btn btn-primary btn-lg btn-block"
+                    <a
+                      href="/#/dashboard"
+                      className="btn btn-cto btn-lg btn-block"
                     >
                       Visit Dashboard
-                    </button>
+                    </a>
                   </CardBody>
                 </Card>
               </Col>

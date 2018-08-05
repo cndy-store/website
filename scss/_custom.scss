@@ -12,6 +12,13 @@ strong {
   font-weight: 700;
 }
 
+.btn-cto {
+  @include button-variant($pink, $pink);
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+  color: white;
+  font-size: 1.3rem;
+}
+
 .card.bg-card-chart {
   background: $pink;
 }
