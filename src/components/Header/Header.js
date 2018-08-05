@@ -28,7 +28,7 @@ class Header extends Component {
         <NavbarBrand href="#" />
         <Nav navbar>
           <NavItem className="px-3">
-            <NavLink href="#/">Dashboard</NavLink>
+            <NavLink href="#/dashboard">Dashboard</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <NavLink href="#/about">About</NavLink>
