@@ -10,7 +10,7 @@ class Footer extends Component {
             Data Protection Policy
           </a>
         </span>
-        <span className="ml-auto">Made with ❤ and 🍭</span>
+        <span className="ml-auto">Stay sweet! ❤🍭</span>
       </footer>
     );
   }
