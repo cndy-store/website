@@ -1,17 +1,51 @@
 // Here you can add other styles
 
+$pinkSuperLight : #FFECEF;
 $pinkLight : #FFB3B3;
 $pinkChartBg : rgba(255,179,179, 0.5);
 $pink : #FF7888;
 $greenLight : #21A68D;
 $green : #169185;
+$greyLight: #f7f9fa;
+
+strong {
+  font-weight: 700;
+}
 
 .card.bg-card-chart {
   background: $pink;
 }
 
 .info-body {
+  background: white;
+
+  .banner {
+    background-size:cover;
+    background-position: center bottom;
+    background-image: url('../img/gradient_background.svg');
+    min-height: 40vh;
+    color: white;
+  }
+
+  .row-hl {
+    background: $pinkSuperLight;
+    border-top: 1px solid $pinkLight;
+    border-bottom: 1px solid $pinkLight;
+  }
+
+  .row-grey {
+    background: $greyLight;
+  }
+
   .jumbotron {
     background: none;
+
+    h1 {
+      font-weight: 700;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 2rem;
+      }
+    }
   }
 }

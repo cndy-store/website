@@ -14,25 +14,13 @@ class Full extends Component {
     return (
       <div className="app">
         <Header />
-        <div className="app-body">
-          <main className="main mt-4">
-            <Container fluid>
-              <Switch>
-                <Route
-                  path="/dashboard"
-                  name="Dashboard"
-                  component={Dashboard}
-                />
-                <Route
-                  path="/about"
-                  name="About"
-                  component={ProductDescription}
-                />
-                <Redirect from="/" to="/dashboard" />
-              </Switch>
-            </Container>
-          </main>
-        </div>
+        <Container fluid>
+          <Switch>
+            <Route path="/dashboard" name="Dashboard" component={Dashboard} />
+            <Route path="/about" name="About" component={ProductDescription} />
+            <Redirect from="/" to="/about" />
+          </Switch>
+        </Container>
         <Footer />
       </div>
     );

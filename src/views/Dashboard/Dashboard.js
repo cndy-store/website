@@ -217,74 +217,78 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="animated fadeIn">
-        {this.renderLoadError()}
-        <Row>
-          <Col>
-            <ButtonToolbar className="float-right mb-4">
-              <ButtonGroup>
-                <Button
-                  color="outline-secondary"
-                  onClick={() => this.handleTimeWindowChange('week')}
-                  active={this.state.statsTimeWindow === 'week'}
-                >
-                  Week
-                </Button>
-                <Button
-                  color="outline-secondary"
-                  onClick={() => this.handleTimeWindowChange('month')}
-                  active={this.state.statsTimeWindow === 'month'}
-                >
-                  Month
-                </Button>
-                <Button
-                  color="outline-secondary"
-                  onClick={() => this.handleTimeWindowChange('all')}
-                  active={this.state.statsTimeWindow === 'all'}
-                >
-                  All
-                </Button>
-              </ButtonGroup>
-            </ButtonToolbar>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs="12" sm="12" md="12" lg="4">
-            <CardChart
-              title={amountIssuedTitle(this.state.statsData)}
-              subtitle={'Total amount of CNDY issued'}
-              data={amountIssuedData(this.state.statsData)}
-            />
-          </Col>
+      <div className="app-body">
+        <main className="main mt-4">
+          <div className="animated fadeIn">
+            {this.renderLoadError()}
+            <Row>
+              <Col>
+                <ButtonToolbar className="float-right mb-4">
+                  <ButtonGroup>
+                    <Button
+                      color="outline-secondary"
+                      onClick={() => this.handleTimeWindowChange('week')}
+                      active={this.state.statsTimeWindow === 'week'}
+                    >
+                      Week
+                    </Button>
+                    <Button
+                      color="outline-secondary"
+                      onClick={() => this.handleTimeWindowChange('month')}
+                      active={this.state.statsTimeWindow === 'month'}
+                    >
+                      Month
+                    </Button>
+                    <Button
+                      color="outline-secondary"
+                      onClick={() => this.handleTimeWindowChange('all')}
+                      active={this.state.statsTimeWindow === 'all'}
+                    >
+                      All
+                    </Button>
+                  </ButtonGroup>
+                </ButtonToolbar>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="12" sm="12" md="12" lg="4">
+                <CardChart
+                  title={amountIssuedTitle(this.state.statsData)}
+                  subtitle={'Total amount of CNDY issued'}
+                  data={amountIssuedData(this.state.statsData)}
+                />
+              </Col>
 
-          <Col xs="12" sm="12" md="12" lg="4">
-            <CardChart
-              title={accountsInvolvedTitle(this.state.statsData)}
-              subtitle={'Accounts making transactions'}
-              data={accountsInvolvedData(this.state.statsData)}
-            />
-          </Col>
+              <Col xs="12" sm="12" md="12" lg="4">
+                <CardChart
+                  title={accountsInvolvedTitle(this.state.statsData)}
+                  subtitle={'Accounts making transactions'}
+                  data={accountsInvolvedData(this.state.statsData)}
+                />
+              </Col>
 
-          <Col xs="12" sm="12" md="12" lg="4">
-            <CardChart
-              title={paymentsGeneratedTitle(this.state.statsData)}
-              subtitle={'Number of Payments'}
-              data={paymentsGeneratedData(this.state.statsData)}
-            />
-          </Col>
-        </Row>
+              <Col xs="12" sm="12" md="12" lg="4">
+                <CardChart
+                  title={paymentsGeneratedTitle(this.state.statsData)}
+                  subtitle={'Number of Payments'}
+                  data={paymentsGeneratedData(this.state.statsData)}
+                />
+              </Col>
+            </Row>
 
-        <Row>
-          <Col>
-            <MainChart statsData={this.state.statsData} />
-          </Col>
-        </Row>
+            <Row>
+              <Col>
+                <MainChart statsData={this.state.statsData} />
+              </Col>
+            </Row>
 
-        <Row>
-          <Col>
-            <GlobalChart latestData={this.state.latestData} />
-          </Col>
-        </Row>
+            <Row>
+              <Col>
+                <GlobalChart latestData={this.state.latestData} />
+              </Col>
+            </Row>
+          </div>
+        </main>
       </div>
     );
   }

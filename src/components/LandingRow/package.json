@@ -1,0 +1,6 @@
+{
+  "name": "LandingRow",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LandingRow.js"
+}
