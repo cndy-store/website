@@ -159,18 +159,25 @@ export default class ProductDescription extends Component {
                   the <a href="/#/dashboard">Analytics Dashboard</a>.
                 </p>
 
-                <Row>
+                <Row className="my-1">
                   <Col>
                     <a href="https://play.google.com/store/apps/details?id=com.cndywallet&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
                       <img
                         className="img-fluid"
                         alt="Get it on Google Play"
-                        src="./img/en_badge_web_generic.png"
+                        src="./img/app_store_badge_android.png"
                       />
                     </a>
                   </Col>
 
-                  <Col />
+                  <Col>
+                    <img
+                      className="img-fluid"
+                      alt="Currently in review for iOS"
+                      src="./img/app_store_badge_ios.png"
+                    />
+                  </Col>
+
                   <Col />
                 </Row>
               </Col>
